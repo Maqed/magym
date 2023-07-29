@@ -1,6 +1,7 @@
 import "./globals.scss";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Navbar from "@/sections/Navbar/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 const title = "Magym";
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Navbar />
         <main>{children}</main>
       </body>
     </html>
