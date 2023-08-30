@@ -1,5 +1,6 @@
 import "./globals.scss";
 import type { Metadata } from "next";
+import { ThemeProvider } from "@/components/providers";
 import { Inter } from "next/font/google";
 import Navbar from "@/sections/Navbar/Navbar";
 
@@ -18,10 +19,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <Navbar />
-        <main>{children}</main>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Navbar />
+          <main>{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   );
