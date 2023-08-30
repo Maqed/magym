@@ -1,16 +1,24 @@
-import { Logo } from "@/component/";
-import Actions from "./Actions";
-type Props = {};
+"use client";
+import Logo from "@/components/logo";
+import { Button } from "@/components/ui/button";
+import { scrollToElement } from "@/lib/client-utils";
 
-function Navbar({}: Props) {
+function Navbar() {
   return (
-    <div className="navbar bg-base-100">
-      <div className="navbar-start">
-        <Logo className="text-2xl" />
-      </div>
+    <header className="container flex items-center justify-between h-16 bg-base-100">
+      <Logo className="text-2xl" />
 
-      <Actions />
-    </div>
+      <div>
+        <Button
+          onClick={() => {
+            scrollToElement("#exercises");
+          }}
+          className="btn-primary"
+        >
+          Exercise
+        </Button>
+      </div>
+    </header>
   );
 }
 
