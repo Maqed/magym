@@ -63,3 +63,8 @@
     @apply px-2 md:px-16;
   }
 }
+@layer utilities {
+  .height-screen-without-navbar {
+    @apply min-h-[calc(100vh-64px)];
+  }
+}
