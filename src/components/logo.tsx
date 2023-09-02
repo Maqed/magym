@@ -5,7 +5,9 @@ type Props = {
 };
 
 function Logo({ className }: Props) {
-  return <h1 className={cn(className)}>Magym</h1>;
+  return (
+    <h1 className={cn("text-4xl font-bold text-primary", className)}>Magym</h1>
+  );
 }
 
 export default Logo;
