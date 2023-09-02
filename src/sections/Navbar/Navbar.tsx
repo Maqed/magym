@@ -7,7 +7,7 @@ import { scrollToElement } from "@/lib/client-utils";
 function Navbar() {
   return (
     <header className="container flex items-center justify-between h-16">
-      <Logo className="text-2xl" />
+      <Logo />
 
       <div className="flex items-center justify-between gap-x-3">
         <ModeToggle />
