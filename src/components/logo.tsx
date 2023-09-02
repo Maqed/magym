@@ -1,11 +1,11 @@
-import { twMerge } from "tailwind-merge";
+import { cn } from "@/lib/utils";
+
 type Props = {
   className?: string;
 };
 
 function Logo({ className }: Props) {
-  className = twMerge("", className);
-  return <h1 className={className}>Magym</h1>;
+  return <h1 className={cn(className)}>Magym</h1>;
 }
 
 export default Logo;
