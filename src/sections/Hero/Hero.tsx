@@ -8,10 +8,11 @@ function Hero() {
   return (
     <section className="container flex items-center justify-between gap-5 height-screen-without-navbar max-md:flex-col">
       <div className="flex flex-col justify-center gap-5 height-screen-without-navbar md:w-3/4">
-        <h1 className="text-2xl font-bold md:text-4xl">
-          Welcome to <Logo className="inline" />
+        <h1 className="text-3xl font-bold md:text-5xl lg:text-6xl">
+          Welcome to{" "}
+          <Logo className="inline text-3xl md:text-5xl lg:text-6xl" />
         </h1>
-        <p className="text-lg">
+        <p className="text-lg md:text-xl ">
           Your ultimate online destination for fitness goals. Whether you want
           to lose weight, gain muscle, or improve your health, we have the
           perfect exercises for you.
