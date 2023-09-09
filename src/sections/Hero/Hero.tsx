@@ -1,5 +1,4 @@
 "use client";
-import Logo from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { scrollToElement } from "@/lib/client-utils";
 import Image from "next/image";
@@ -9,8 +8,7 @@ function Hero() {
     <section className="container flex items-center justify-between gap-5 height-screen-without-navbar max-md:flex-col">
       <div className="flex flex-col justify-center gap-5 height-screen-without-navbar md:w-3/4">
         <h1 className="text-3xl font-bold md:text-5xl lg:text-6xl">
-          Welcome to{" "}
-          <Logo className="inline text-3xl md:text-5xl lg:text-6xl" />
+          Welcome to <span className="text-primary">Magym</span>
         </h1>
         <p className="text-lg md:text-xl ">
           Your ultimate online destination for fitness goals. Whether you want
