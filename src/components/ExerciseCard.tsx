@@ -39,7 +39,7 @@ function ExerciseCard({
       <CardContent className="flex flex-col items-center justify-center">
         <Image width={200} height={200} src={gifUrl} alt={name} />
         <Dialog>
-          <DialogTrigger>
+          <DialogTrigger asChild>
             <Button variant="secondary">Show Instructions</Button>
           </DialogTrigger>
           <DialogContent>
