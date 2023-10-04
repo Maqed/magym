@@ -8,6 +8,15 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ExerciseType } from "@/types/gym";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 function ExerciseCard({
   equipment,
@@ -15,7 +24,8 @@ function ExerciseCard({
   name,
   bodyPart,
   target,
-}: Partial<ExerciseType>) {
+  instructions,
+}: ExerciseType) {
   return (
     <Card className="w-[350px]">
       <CardHeader className="flex flex-col items-center justify-center">
@@ -26,13 +36,34 @@ function ExerciseCard({
           <Dumbbell className="inline mr-1 w-[1em] h-[1em]" /> {equipment}
         </CardDescription>
       </CardHeader>
-      <CardContent className="flex items-center justify-center">
-        <Image
-          width={200}
-          height={200}
-          src={gifUrl as string}
-          alt={name as string}
-        />
+      <CardContent className="flex flex-col items-center justify-center">
+        <Image width={200} height={200} src={gifUrl} alt={name} />
+        <Dialog>
+          <DialogTrigger>
+            <Button variant="secondary">Show Instructions</Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Insctructions to do {name}</DialogTitle>
+            </DialogHeader>
+            <ol className="px-4">
+              {instructions.map((instruction, index) => {
+                return (
+                  <li
+                    className="list-decimal"
+                    key={`${name}-instruction-${index + 1}`}
+                  >
+                    {instruction}
+                  </li>
+                );
+              })}
+            </ol>
+            <div className="flex flex-col items-center justify-center">
+              <Image width={200} height={200} src={gifUrl} alt={name} />
+              <small>Illustration image</small>
+            </div>
+          </DialogContent>
+        </Dialog>
       </CardContent>
     </Card>
   );
