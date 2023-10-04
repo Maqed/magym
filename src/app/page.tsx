@@ -19,7 +19,10 @@ export default async function Home({ searchParams }: Props) {
   const filteredExercises = exercises.filter((exercise) => {
     const isNameValid = !name || exercise.name.includes(name.toLowerCase());
     const isBodyPartValid =
-      !bodyPart || bodyPart === "all" || exercise.bodyPart.includes(bodyPart);
+      !bodyPart ||
+      bodyPart === "all" ||
+      exercise.bodyPart.includes(bodyPart) ||
+      exercise.target.includes(bodyPart);
     const isEquipmentValid =
       !equipment ||
       equipment === "all" ||
