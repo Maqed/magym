@@ -43,15 +43,10 @@ export default async function Home({ searchParams }: Props) {
         <div className="flex flex-wrap items-center justify-center gap-5">
           {filteredExercises.length > 0 ? (
             filteredExercises.slice(0, 6).map((exercise) => {
-              const { name, target, equipment, gifUrl, bodyPart } = exercise;
               return (
                 <ExerciseCard
                   key={`exercisecard-${exercise.id}`}
-                  name={name}
-                  target={target}
-                  bodyPart={bodyPart}
-                  equipment={equipment}
-                  gifUrl={gifUrl}
+                  {...exercise}
                 />
               );
             })
