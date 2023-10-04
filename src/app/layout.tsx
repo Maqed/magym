@@ -1,6 +1,5 @@
 import "./globals.scss";
 import type { Metadata } from "next";
-import { ThemeProvider } from "@/components/providers";
 import { Lato } from "next/font/google";
 import Navbar from "@/sections/Navbar/Navbar";
 
@@ -21,10 +20,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={lato.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Navbar />
-          <main>{children}</main>
-        </ThemeProvider>
+        <Navbar />
+        <main>{children}</main>
       </body>
     </html>
   );
