@@ -1,4 +1,5 @@
 export const BODY_PARTS: string[] = [
+  // Body parts
   "back",
   "cardio",
   "chest",
@@ -9,6 +10,26 @@ export const BODY_PARTS: string[] = [
   "upper arms",
   "upper legs",
   "waist",
+  // Target muscles
+  "abductors",
+  "abs",
+  "adductors",
+  "biceps",
+  "calves",
+  "cardiovascular system",
+  "delts",
+  "forearms",
+  "glutes",
+  "hamstrings",
+  "lats",
+  "levator scapulae",
+  "pectorals",
+  "quads",
+  "serratus anterior",
+  "spine",
+  "traps",
+  "triceps",
+  "upper back",
 ];
 export const EXERCISE_EQUIPMENT: string[] = [
   "assisted",
