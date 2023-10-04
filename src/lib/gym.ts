@@ -1,5 +1,6 @@
 export async function getAllExercises() {
-  const url = "https://exercisedb.p.rapidapi.com/exercises";
+  // Add Limit to 2,000 to make sure that all of the exercises are fetched.
+  const url = "https://exercisedb.p.rapidapi.com/exercises?limit=2000";
   const options = {
     method: "GET",
     headers: {
