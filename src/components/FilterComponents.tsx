@@ -39,7 +39,7 @@ function FilterComponents() {
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
-    router.replace(
+    router.push(
       `?name=${exerciseName}&bodyPart=${selectedBodyPart}&equipment=${selectedEquipment}`,
       {
         scroll: false,
