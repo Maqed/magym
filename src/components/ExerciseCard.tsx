@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Dumbbell } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -17,6 +16,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import ExerciseGIF from "@/components/ExerciseGIF";
 
 function ExerciseCard({
   equipment,
@@ -55,8 +55,8 @@ function ExerciseCard({
 
         <CardDescription className="capitalize"></CardDescription>
       </CardHeader>
-      <CardContent className="flex flex-col items-center justify-center">
-        <Image width={200} height={200} src={gifUrl} alt={name} />
+      <CardContent className="flex flex-col items-center justify-center gap-y-5">
+        <ExerciseGIF exerciseName={name} src={gifUrl} />
         <Dialog>
           <DialogTrigger asChild>
             <Button variant="secondary">Show Instructions</Button>
@@ -78,7 +78,7 @@ function ExerciseCard({
               })}
             </ol>
             <div className="flex flex-col items-center justify-center">
-              <Image width={200} height={200} src={gifUrl} alt={name} />
+              <ExerciseGIF exerciseName={name} src={gifUrl} />
               <small>Illustration image</small>
             </div>
           </DialogContent>
