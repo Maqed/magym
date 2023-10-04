@@ -7,6 +7,9 @@ export async function getAllExercises() {
       "X-RapidAPI-Key": process.env.NEXT_APP_EXERCISESDB_API_KEY as string,
       "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
     },
+    // Revalidate every hour to make sure that the girURL is shown properly.
+    // https://rapidapi.com/justin-WFnsXH_t6/api/exercisedb/details
+    next: { revalidate: 3600 },
   };
 
   try {
