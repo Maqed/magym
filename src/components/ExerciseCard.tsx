@@ -65,7 +65,7 @@ function ExerciseCard({
             <DialogHeader>
               <DialogTitle>Insctructions to do {name}</DialogTitle>
             </DialogHeader>
-            <ol className="px-4">
+            <ol className="px-4 overflow-auto max-h-72">
               {instructions.map((instruction, index) => {
                 return (
                   <li
