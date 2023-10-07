@@ -39,13 +39,18 @@ function FilterComponents() {
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
-    router.push(
-      `?name=${exerciseName}&bodyPart=${selectedBodyPart}&equipment=${selectedEquipment}`,
-      {
-        scroll: false,
-      }
-    );
+
+    // Create a URLSearchParams object
+    let params = new URLSearchParams();
+    params.set("name", exerciseName);
+    params.set("bodyPart", selectedBodyPart);
+    params.set("equipment", selectedEquipment);
+    params.set("page", "1");
+
+    // Push the new query string to the router
+    router.push(`?${params.toString()}`, { scroll: false });
   }
+
   return (
     <form onSubmit={onSubmit} className="grid grid-cols-1 gap-5 lg:grid-cols-6">
       <Input
