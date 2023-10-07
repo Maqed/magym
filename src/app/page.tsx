@@ -3,19 +3,23 @@ import { ExerciseType } from "@/types/gym";
 import ExerciseCard from "@/components/ExerciseCard";
 import FilterComponents from "@/components/FilterComponents";
 import { getAllExercises } from "@/lib/gym";
+import Pagination from "@/components/Pagination";
+
+const ITEMS_PER_PAGE = 6;
 
 type Props = {
   searchParams: {
     name: string;
     bodyPart: string;
     equipment: string;
+    page: string;
   };
 };
 
-export default async function Home({ searchParams }: Props) {
+export default async function Home({
+  searchParams: { name = "", bodyPart = "", equipment = "", page = "1" },
+}: Props) {
   const exercises: ExerciseType[] = await getAllExercises();
-  let { name, bodyPart, equipment } = searchParams;
-
   const filteredExercises = exercises.filter((exercise) => {
     const isNameValid = !name || exercise.name.includes(name.toLowerCase());
     const isBodyPartValid =
@@ -30,6 +34,9 @@ export default async function Home({ searchParams }: Props) {
 
     return isNameValid && isBodyPartValid && isEquipmentValid;
   });
+  const start = Number(page) - 1;
+  const end = Number(page) - 1 + ITEMS_PER_PAGE;
+  const pageCount = Math.ceil(filteredExercises.length / ITEMS_PER_PAGE);
   return (
     <>
       <Hero />
@@ -45,7 +52,7 @@ export default async function Home({ searchParams }: Props) {
         <FilterComponents />
         <div className="flex flex-wrap items-center justify-center gap-5">
           {filteredExercises.length > 0 ? (
-            filteredExercises.slice(0, 6).map((exercise) => {
+            filteredExercises.slice(start, end).map((exercise) => {
               return (
                 <ExerciseCard
                   key={`exercisecard-${exercise.id}`}
@@ -57,6 +64,12 @@ export default async function Home({ searchParams }: Props) {
             <h3 className="text-lg">There is no exercises for this query.</h3>
           )}
         </div>
+        <Pagination
+          currentPage={Number(page)}
+          hasPrevious={Number(page) !== 1}
+          hasNext={Number(page) !== pageCount}
+          pageCount={pageCount}
+        />
       </section>
     </>
   );
