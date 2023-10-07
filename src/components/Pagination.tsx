@@ -1,7 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { ReactNode } from "react";
 
 type Props = {
   pageCount: number;
