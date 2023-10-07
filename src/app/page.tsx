@@ -4,6 +4,7 @@ import ExerciseCard from "@/components/ExerciseCard";
 import FilterComponents from "@/components/FilterComponents";
 import { getAllExercises } from "@/lib/gym";
 import Pagination from "@/components/Pagination";
+import { ReactNode } from "react";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -20,6 +21,7 @@ export default async function Home({
   searchParams: { name = "", bodyPart = "", equipment = "", page = "1" },
 }: Props) {
   const exercises: ExerciseType[] = await getAllExercises();
+
   const filteredExercises = exercises.filter((exercise) => {
     const isNameValid = !name || exercise.name.includes(name.toLowerCase());
     const isBodyPartValid =
@@ -34,9 +36,21 @@ export default async function Home({
 
     return isNameValid && isBodyPartValid && isEquipmentValid;
   });
+
   const start = Number(page) - 1;
   const end = Number(page) - 1 + ITEMS_PER_PAGE;
   const pageCount = Math.ceil(filteredExercises.length / ITEMS_PER_PAGE);
+
+  let content: ReactNode = filteredExercises
+    .slice(start, end)
+    .map((exercise) => {
+      return <ExerciseCard key={`exercisecard-${exercise.id}`} {...exercise} />;
+    });
+
+  if (Number(page) > pageCount || Number(page) < 1)
+    content = <h3>This page doesn&apos;t exist.</h3>;
+  if (filteredExercises.length === 0)
+    content = <h3>There&apos;s no exercises for this query.</h3>;
   return (
     <>
       <Hero />
@@ -51,18 +65,7 @@ export default async function Home({
         </div>
         <FilterComponents />
         <div className="flex flex-wrap items-center justify-center gap-5">
-          {filteredExercises.length > 0 ? (
-            filteredExercises.slice(start, end).map((exercise) => {
-              return (
-                <ExerciseCard
-                  key={`exercisecard-${exercise.id}`}
-                  {...exercise}
-                />
-              );
-            })
-          ) : (
-            <h3 className="text-lg">There is no exercises for this query.</h3>
-          )}
+          {content}
         </div>
         <Pagination
           currentPage={Number(page)}
