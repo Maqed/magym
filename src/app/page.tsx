@@ -37,8 +37,8 @@ export default async function Home({
     return isNameValid && isBodyPartValid && isEquipmentValid;
   });
 
-  const start = Number(page) - 1;
-  const end = Number(page) - 1 + ITEMS_PER_PAGE;
+  const start = ITEMS_PER_PAGE * (Number(page) - 1);
+  const end = ITEMS_PER_PAGE * Number(page);
   const pageCount = Math.ceil(filteredExercises.length / ITEMS_PER_PAGE);
 
   let content: ReactNode = filteredExercises
