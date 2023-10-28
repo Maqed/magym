@@ -1,6 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { scrollToElement } from "@/lib/client-utils";
 
 type Props = {
   pageCount: number;
@@ -22,6 +23,7 @@ function Pagination({
     let params = new URLSearchParams(window.location.search);
     params.set(pageParamKey, selectedPage.toString());
     router.push(`?${params.toString()}`, { scroll: false });
+    scrollToElement("#exercises");
   };
   let content = (
     <>
