@@ -42,9 +42,9 @@ function FilterComponents() {
 
     // Create a URLSearchParams object
     let params = new URLSearchParams();
-    params.set("name", exerciseName);
-    params.set("bodyPart", selectedBodyPart);
-    params.set("equipment", selectedEquipment);
+    if (exerciseName) params.set("name", exerciseName);
+    if (selectedBodyPart) params.set("bodyPart", selectedBodyPart);
+    if (selectedEquipment) params.set("equipment", selectedEquipment);
     params.set("page", "1");
 
     // Push the new query string to the router
