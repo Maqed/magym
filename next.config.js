@@ -2,6 +2,7 @@
 const nextConfig = {
   images: {
     domains: ["v2.exercisedb.io"],
+    unoptimized: true,
   },
 };
 
