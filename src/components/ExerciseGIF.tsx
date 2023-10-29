@@ -26,7 +26,7 @@ function ExerciseGIF({ src, exerciseName }: Props) {
         src={src}
         alt={exerciseName}
         className={cn(isGIFLoading && "invisible")}
-        onLoadingComplete={() => {
+        onLoad={() => {
           setIsGIFLoading(false);
         }}
       />
