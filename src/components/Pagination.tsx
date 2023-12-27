@@ -1,22 +1,46 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { scrollToElement } from "@/lib/client-utils";
+import {
+  UIPagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/ui-pagination";
 
 type Props = {
   pageCount: number;
   currentPage: number;
-  hasPrevious: boolean;
-  hasNext: boolean;
   pageParamKey?: string;
+  offset?: number;
 };
+
+function generatePagination({
+  pageCount,
+  currentPage,
+  offset = 1,
+}: Props): number[] {
+  let pagination = [];
+  for (
+    let page = currentPage - offset;
+    page <= currentPage + offset && page <= pageCount;
+    page++
+  ) {
+    if (page >= 1 && page <= pageCount) {
+      pagination.push(page);
+    }
+  }
+  return pagination;
+}
 
 function Pagination({
   pageCount,
   currentPage,
-  hasPrevious,
-  hasNext,
   pageParamKey = "page",
+  offset = 1,
 }: Props) {
   const router = useRouter();
   const handleNavigation = (selectedPage: number) => {
@@ -25,22 +49,81 @@ function Pagination({
     router.push(`?${params.toString()}`, { scroll: false });
     scrollToElement("#exercises");
   };
+  const paginationArr = generatePagination({
+    pageCount,
+    currentPage,
+    offset,
+  });
   let content = (
-    <>
-      <Button
-        onClick={() => handleNavigation(currentPage - 1)}
-        disabled={!hasPrevious}
-      >
-        &lt; Previous
-      </Button>
-      {currentPage} / {pageCount}
-      <Button
-        onClick={() => handleNavigation(currentPage + 1)}
-        disabled={!hasNext}
-      >
-        Next &gt;
-      </Button>
-    </>
+    <UIPagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious
+            onClick={() => {
+              handleNavigation(currentPage - 1);
+            }}
+            disabled={Number(currentPage) === 1}
+          />
+        </PaginationItem>
+        {!paginationArr.includes(1) && (
+          <>
+            <PaginationItem>
+              <PaginationLink
+                onClick={() => {
+                  handleNavigation(1);
+                }}
+              >
+                1
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+          </>
+        )}
+        {paginationArr.map((page) => {
+          const isActive = page === currentPage;
+          return (
+            <PaginationItem key={`pagination-${page}`}>
+              <PaginationLink
+                isActive={isActive}
+                onClick={() => {
+                  if (!isActive) {
+                    handleNavigation(page);
+                  }
+                }}
+              >
+                {page}
+              </PaginationLink>
+            </PaginationItem>
+          );
+        })}
+        {!paginationArr.includes(pageCount) && (
+          <>
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink
+                onClick={() => {
+                  handleNavigation(pageCount);
+                }}
+              >
+                {pageCount}
+              </PaginationLink>
+            </PaginationItem>
+          </>
+        )}
+        <PaginationItem>
+          <PaginationNext
+            onClick={() => {
+              handleNavigation(currentPage + 1);
+            }}
+            disabled={Number(currentPage) === pageCount}
+          />
+        </PaginationItem>
+      </PaginationContent>
+    </UIPagination>
   );
   if (pageCount === 0 || currentPage < 1 || currentPage > pageCount)
     content = <></>;

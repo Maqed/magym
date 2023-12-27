@@ -67,12 +67,7 @@ export default async function Home({
         <div className="flex flex-wrap items-center justify-center gap-5">
           {content}
         </div>
-        <Pagination
-          currentPage={Number(page)}
-          hasPrevious={Number(page) !== 1}
-          hasNext={Number(page) !== pageCount}
-          pageCount={pageCount}
-        />
+        <Pagination currentPage={Number(page)} pageCount={pageCount} />
       </section>
     </>
   );
