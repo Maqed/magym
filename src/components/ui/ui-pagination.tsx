@@ -50,7 +50,7 @@ const PaginationLink = ({
     className={cn(
       "max-sm:px-2 max-sm:h-8",
       buttonVariants({
-        variant: isActive ? "outline" : "ghost",
+        variant: isActive ? "default" : "outline",
         size,
       }),
       className
