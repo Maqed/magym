@@ -7,8 +7,6 @@ import {
   PaginationEllipsis,
   PaginationItem,
   PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
 } from "@/components/ui/ui-pagination";
 
 type Props = {
@@ -21,7 +19,7 @@ type Props = {
 function generatePagination({
   pageCount,
   currentPage,
-  offset = 1,
+  offset = 2,
 }: Props): number[] {
   let pagination = [];
   for (
@@ -40,7 +38,7 @@ function Pagination({
   pageCount,
   currentPage,
   pageParamKey = "page",
-  offset = 1,
+  offset = 2,
 }: Props) {
   const router = useRouter();
   const handleNavigation = (selectedPage: number) => {
@@ -57,14 +55,6 @@ function Pagination({
   let content = (
     <UIPagination>
       <PaginationContent>
-        <PaginationItem>
-          <PaginationPrevious
-            onClick={() => {
-              handleNavigation(currentPage - 1);
-            }}
-            disabled={Number(currentPage) === 1}
-          />
-        </PaginationItem>
         {!paginationArr.includes(1) && (
           <>
             <PaginationItem>
@@ -114,14 +104,6 @@ function Pagination({
             </PaginationItem>
           </>
         )}
-        <PaginationItem>
-          <PaginationNext
-            onClick={() => {
-              handleNavigation(currentPage + 1);
-            }}
-            disabled={Number(currentPage) === pageCount}
-          />
-        </PaginationItem>
       </PaginationContent>
     </UIPagination>
   );
