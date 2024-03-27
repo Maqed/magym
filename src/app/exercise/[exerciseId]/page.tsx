@@ -14,10 +14,10 @@ type Props = {
 };
 
 async function Exercise({ params }: Props) {
-  const inputId = params.exerciseId;
+  const { exerciseId } = params;
 
   const exercises: ExerciseType[] = await getAllExercises();
-  const exercise = exercises.find((exercise) => exercise.id == inputId);
+  const exercise = exercises.find((exercise) => exercise.id === exerciseId);
 
   if (!exercise) {
     notFound();
