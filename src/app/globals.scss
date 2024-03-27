@@ -40,6 +40,9 @@
   .container {
     @apply px-2 md:px-16;
   }
+  a {
+    @apply text-[#0000EE];
+  }
 }
 @layer utilities {
   .height-screen-without-navbar {
