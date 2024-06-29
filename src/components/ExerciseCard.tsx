@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Dumbbell } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 import {
   Card,
   CardContent,
@@ -11,6 +12,8 @@ import {
 import { ExerciseType } from "@/types/gym";
 import ExerciseGIF from "@/components/ExerciseGIF";
 
+type Props = ExerciseType & { className?: string };
+
 function ExerciseCard({
   id,
   equipment,
@@ -19,12 +22,10 @@ function ExerciseCard({
   bodyPart,
   target,
   secondaryMuscles,
-}: ExerciseType) {
+  className = "",
+}: Props) {
   return (
-    <Link
-      className="transition-all hover:shadow-md hover:-translate-y-1"
-      href={`/exercise/${id}`}
-    >
+    <Link className={cn("", className)} href={`/exercise/${id}`}>
       <Card className="w-[350px]">
         <CardHeader className="flex flex-col items-center justify-center">
           <CardTitle className="capitalize">{name}</CardTitle>
