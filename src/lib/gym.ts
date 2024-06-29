@@ -1,3 +1,5 @@
+import { ExerciseType } from "@/types/gym";
+
 export async function getAllExercises() {
   // Add Limit to 2,000 to make sure that all of the exercises are fetched.
   const url = "https://exercisedb.p.rapidapi.com/exercises?limit=2000";
@@ -19,4 +21,31 @@ export async function getAllExercises() {
   } catch (error) {
     console.error(error);
   }
+}
+
+export function filterExercises({
+  exercises,
+  name,
+  bodyPart,
+  equipment,
+}: {
+  exercises: ExerciseType[];
+  name: string;
+  bodyPart: string;
+  equipment: string;
+}): ExerciseType[] {
+  return exercises.filter((exercise) => {
+    const isNameValid = !name || exercise.name.includes(name.toLowerCase());
+    const isBodyPartValid =
+      !bodyPart ||
+      bodyPart === "all" ||
+      exercise.bodyPart.includes(bodyPart) ||
+      exercise.target.includes(bodyPart);
+    const isEquipmentValid =
+      !equipment ||
+      equipment === "all" ||
+      exercise.equipment.includes(equipment);
+
+    return isNameValid && isBodyPartValid && isEquipmentValid;
+  });
 }
