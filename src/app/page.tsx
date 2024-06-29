@@ -1,10 +1,10 @@
 import Hero from "@/sections/Hero/Hero";
 import { ExerciseType } from "@/types/gym";
-import ExerciseCard from "@/components/ExerciseCard";
 import FilterComponents from "@/components/FilterComponents";
 import { getAllExercises } from "@/lib/gym";
 import Pagination from "@/components/Pagination";
 import { ReactNode } from "react";
+import { CardHoverEffect } from "@/components/ui/card-hover-effect";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -41,16 +41,22 @@ export default async function Home({
   const end = ITEMS_PER_PAGE * Number(page);
   const pageCount = Math.ceil(filteredExercises.length / ITEMS_PER_PAGE);
 
-  let content: ReactNode = filteredExercises
-    .slice(start, end)
-    .map((exercise) => {
-      return <ExerciseCard key={`exercisecard-${exercise.id}`} {...exercise} />;
-    });
+  let content: ReactNode = (
+    <CardHoverEffect exercises={filteredExercises.slice(start, end)} />
+  );
 
   if (Number(page) > pageCount || Number(page) < 1)
-    content = <h3>This page doesn&apos;t exist.</h3>;
+    content = (
+      <div className="flex flex-wrap items-center justify-center gap-5">
+        <h3>This page doesn&apos;t exist.</h3>
+      </div>
+    );
   if (filteredExercises.length === 0)
-    content = <h3>There&apos;s no exercises for this query.</h3>;
+    content = (
+      <div className="flex flex-wrap items-center justify-center gap-5">
+        <h3>There&apos;s no exercises for this query.</h3>
+      </div>
+    );
   return (
     <>
       <Hero />
@@ -64,9 +70,7 @@ export default async function Home({
           </p>
         </div>
         <FilterComponents />
-        <div className="flex flex-wrap items-center justify-center gap-5">
-          {content}
-        </div>
+        {content}
         <Pagination currentPage={Number(page)} pageCount={pageCount} />
       </section>
     </>
