@@ -1,6 +1,7 @@
 import Hero from "@/sections/Hero/Hero";
 import ExercisesSection from "@/components/ExercisesSection";
-
+import { Suspense } from "react";
+import ExerciseCardSkeleton from "@/components/ExerciseCardSkeleton";
 type Props = {
   searchParams: {
     name: string;
@@ -25,12 +26,22 @@ export default async function Home({
             Choose the muscle group and the equipment and let the rest be on us.
           </p>
         </div>
-        <ExercisesSection
-          bodyPart={bodyPart}
-          name={name}
-          equipment={equipment}
-          page={page}
-        />
+        <Suspense
+          fallback={
+            <div className="flex flex-wrap justify-center gap-5">
+              {[...Array(6)].map((element, idx) => {
+                return <ExerciseCardSkeleton key={`card-skeleton-${idx}`} />;
+              })}
+            </div>
+          }
+        >
+          <ExercisesSection
+            bodyPart={bodyPart}
+            name={name}
+            equipment={equipment}
+            page={page}
+          />
+        </Suspense>
       </section>
     </>
   );
