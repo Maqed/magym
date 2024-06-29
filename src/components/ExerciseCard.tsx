@@ -2,13 +2,7 @@ import Link from "next/link";
 import { Dumbbell } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ExerciseType } from "@/types/gym";
 import ExerciseGIF from "@/components/ExerciseGIF";
 
@@ -50,8 +44,6 @@ function ExerciseCard({
               </Badge>
             </div>
           </div>
-
-          <CardDescription className="capitalize"></CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col items-center justify-center gap-y-5">
           <ExerciseGIF exerciseName={name} src={gifUrl} />
