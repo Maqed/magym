@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { BarLoader } from "react-spinners";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type Props = {
   src: string;
@@ -32,7 +32,7 @@ function ExerciseGIF({ src, exerciseName }: Props) {
       />
       {isGIFLoading && (
         <div className="absolute">
-          <BarLoader color="#dc2626" />
+          <Skeleton className="h-[200px] w-[300px] rounded-xl" />
         </div>
       )}
     </div>
