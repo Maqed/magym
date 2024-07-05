@@ -12,6 +12,7 @@ import { Dumbbell } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { getExercise } from "@/lib/gym";
+import { capitalize } from "@/lib/utils";
 
 type Props = {
   params: { exerciseId: string };
@@ -26,8 +27,8 @@ export async function generateMetadata({ params }: Props) {
   }
 
   const { name, bodyPart, equipment, gifUrl, target } = exercise;
-  const title = `Magym | ${name}`;
-  const description = `Learn how to do ${name} with a few steps. It will make your ${bodyPart} stronger, especially your ${target}. You can do it with ${equipment}`;
+  const title = `${SITE_NAME} | ${capitalize(name)}`;
+  const description = `Learn how to do ${name} simply. It will make your ${bodyPart} stronger, especially your ${target}. You can do it with ${equipment}`;
   return {
     title,
     description,
