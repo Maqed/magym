@@ -49,3 +49,7 @@ export function filterExercises({
     return isNameValid && isBodyPartValid && isEquipmentValid;
   });
 }
+export async function getExercise(id: string) {
+  const exercises: ExerciseType[] = await getAllExercises();
+  return exercises.find((exercise) => exercise.id === id);
+}

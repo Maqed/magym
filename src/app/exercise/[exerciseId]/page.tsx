@@ -6,8 +6,7 @@ import Link from "next/link";
 import { Dumbbell } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
-import { getAllExercises } from "@/lib/gym";
-import { ExerciseType } from "@/types/gym";
+import { getExercise } from "@/lib/gym";
 
 type Props = {
   params: { exerciseId: string };
@@ -16,8 +15,7 @@ type Props = {
 async function Exercise({ params }: Props) {
   const { exerciseId } = params;
 
-  const exercises: ExerciseType[] = await getAllExercises();
-  const exercise = exercises.find((exercise) => exercise.id === exerciseId);
+  const exercise = await getExercise(exerciseId);
 
   if (!exercise) {
     notFound();
