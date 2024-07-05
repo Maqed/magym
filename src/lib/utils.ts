@@ -10,3 +10,8 @@ export function getRandomInt(min: number, max: number) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
 }
+
+export function capitalize(str: string) {
+  // This function capitalizes every first letter of each word in a string
+  return str.replace(/^(.)|\s+(.)/g, (letter) => letter.toUpperCase());
+}
