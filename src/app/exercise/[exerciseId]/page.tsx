@@ -1,4 +1,9 @@
-import React from "react";
+import {
+  SITE_URL,
+  SITE_NAME,
+  CREATOR_TWITTER_ID,
+  CREATOR_TWITTER_NAME,
+} from "@/types/siteData";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -11,6 +16,41 @@ import { getExercise } from "@/lib/gym";
 type Props = {
   params: { exerciseId: string };
 };
+
+export async function generateMetadata({ params }: Props) {
+  const { exerciseId } = params;
+
+  const exercise = await getExercise(exerciseId);
+  if (!exercise) {
+    notFound();
+  }
+
+  const { name, bodyPart, equipment, gifUrl, target } = exercise;
+  const title = `Magym | ${name}`;
+  const description = `Learn how to do ${name} with a few steps. It will make your ${bodyPart} stronger, especially your ${target}. You can do it with ${equipment}`;
+  return {
+    title,
+    description,
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      siteId: CREATOR_TWITTER_ID,
+      creator: CREATOR_TWITTER_NAME,
+      creatorId: CREATOR_TWITTER_ID,
+      images: [gifUrl],
+    },
+    openGraph: {
+      title,
+      description,
+      url: SITE_URL,
+      siteName: SITE_NAME,
+      images: [gifUrl],
+      locale: "en_US",
+      type: "website",
+    },
+  };
+}
 
 async function Exercise({ params }: Props) {
   const { exerciseId } = params;
