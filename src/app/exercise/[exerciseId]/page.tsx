@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props) {
   }
 
   const { name, bodyPart, equipment, gifUrl, target } = exercise;
-  const title = `${SITE_NAME} | ${capitalize(name)}`;
+  const title = `${capitalize(name)} | ${SITE_NAME}`;
   const description = `Learn how to do ${name} simply. It will make your ${bodyPart} stronger, especially your ${target}. You can do it with ${equipment}`;
   return {
     title,
