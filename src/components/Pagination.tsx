@@ -107,7 +107,7 @@ function Pagination({
       </PaginationContent>
     </UIPagination>
   );
-  if (pageCount === 0 || currentPage < 1 || currentPage > pageCount)
+  if (pageCount in [0, 1] || currentPage < 1 || currentPage > pageCount)
     content = <></>;
   return (
     <div className="flex items-center justify-center gap-3">{content}</div>
