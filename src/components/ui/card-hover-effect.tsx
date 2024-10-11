@@ -23,7 +23,7 @@ export const CardHoverEffect = ({ exercises, className }: Props) => {
       {exercises.map((exercise, idx) => (
         <div
           key={exercise?.id}
-          className="relative group p-2"
+          className="relative group p-2 h-full"
           onMouseEnter={() => setHoveredIndex(idx)}
           onMouseLeave={() => setHoveredIndex(null)}
         >

@@ -20,7 +20,7 @@ function ExerciseCard({
 }: Props) {
   return (
     <Link className={cn("", className)} href={`/exercise/${id}`}>
-      <Card className="rounded-3xl">
+      <Card className="rounded-3xl h-full w-full">
         <CardHeader className="flex flex-col items-center justify-center">
           <CardTitle className="capitalize">{name}</CardTitle>
           <div className="flex flex-col flex-wrap items-center justify-between gap-3 py-2">
