@@ -3,15 +3,13 @@ import { ExerciseType } from "@/types/gym";
 export async function getAllExercises() {
   // Add Limit to 2,000 to make sure that all of the exercises are fetched.
   const url = "https://exercisedb.p.rapidapi.com/exercises?limit=2000";
-  const options = {
+  const options: RequestInit = {
     method: "GET",
     headers: {
       "X-RapidAPI-Key": process.env.NEXT_APP_EXERCISESDB_API_KEY as string,
       "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
     },
-    // Revalidate every hour to make sure that the girURL is shown properly.
-    // https://rapidapi.com/justin-WFnsXH_t6/api/exercisedb/details
-    next: { revalidate: 3600 },
+    cache: "no-store" as RequestCache,
   };
 
   try {
